@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router";
 import { ChevronLeft, Play, FileText, Bell } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function RoomDetails() {
   const navigate = useNavigate();
@@ -8,7 +9,12 @@ export default function RoomDetails() {
   return (
     <div className="h-screen w-full bg-white flex flex-col">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center gap-3">
+      <motion.div
+        className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center gap-3"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         <button
           onClick={() => navigate("/home")}
           className="p-1 hover:bg-[var(--electric-blue-light)] rounded-lg transition-colors"
@@ -17,12 +23,17 @@ export default function RoomDetails() {
           <ChevronLeft className="w-6 h-6 text-[var(--electric-blue)]" />
         </button>
         <h1 className="text-lg text-neutral-900">Classroom 101</h1>
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
         {/* Room Info Card */}
-        <div className="bg-neutral-50 rounded-xl p-4 space-y-3">
+        <motion.div
+          className="bg-neutral-50 rounded-xl p-4 space-y-3"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
           <div className="flex items-center justify-between">
             <p className="text-sm text-neutral-500">Type</p>
             <p className="text-neutral-900">Classroom</p>
@@ -45,33 +56,48 @@ export default function RoomDetails() {
             <p className="text-sm text-neutral-500">NFC Required</p>
             <p className="text-neutral-900">Yes</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Primary Actions */}
         <div className="space-y-3">
-          <button
+          <motion.button
             onClick={() => navigate(`/room/${id}/start-checkin`)}
             className="w-full p-4 bg-[var(--electric-blue)] text-white rounded-xl hover:bg-[var(--electric-blue-dark)] transition-colors flex items-center justify-center gap-2 touch-manipulation active:scale-[0.98]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <Play className="w-5 h-5" />
             <span>Start Check-in</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={() => navigate(`/room/${id}/logs`)}
             className="w-full p-4 bg-neutral-50 text-[var(--electric-blue)] rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors flex items-center justify-center gap-2 touch-manipulation"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <FileText className="w-5 h-5" />
             <span>View Logs</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             onClick={() => navigate(`/room/${id}/announcements`)}
             className="w-full p-4 bg-neutral-50 text-[var(--electric-blue)] rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors flex items-center justify-center gap-2 touch-manipulation"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <Bell className="w-5 h-5" />
             <span>Announcements</span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

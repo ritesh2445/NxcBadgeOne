@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router";
 import { ChevronLeft, Plus } from "lucide-react";
+import { motion } from "motion/react";
 
 type Announcement = {
   id: string;
@@ -36,7 +37,12 @@ export default function Announcements() {
   return (
     <div className="h-screen w-full bg-white flex flex-col">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center justify-between">
+      <motion.div 
+        className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center justify-between"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate(`/room/${id}`)}
@@ -47,29 +53,36 @@ export default function Announcements() {
           </button>
           <h1 className="text-lg text-neutral-900">Announcements</h1>
         </div>
-        <button
+        <motion.button
           onClick={() => navigate(`/room/${id}/announcements/create`)}
           className="p-2 hover:bg-[var(--electric-blue-light)] rounded-lg transition-colors"
           aria-label="Create announcement"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <Plus className="w-6 h-6 text-[var(--electric-blue)]" />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       {/* Announcements List */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
         <div className="space-y-3">
-          {mockAnnouncements.map((announcement) => (
-            <div
+          {mockAnnouncements.map((announcement, index) => (
+            <motion.div
               key={announcement.id}
               className="p-4 bg-neutral-50 rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 * index + 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <h3 className="text-neutral-900 mb-2">{announcement.title}</h3>
               <p className="text-sm text-neutral-500 mb-3 line-clamp-2">
                 {announcement.preview}
               </p>
               <p className="text-xs text-neutral-400">{announcement.expiry}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

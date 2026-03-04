@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { ChevronLeft, Download, Calendar } from "lucide-react";
+import { motion } from "motion/react";
 
 type LogEntry = {
   id: string;
@@ -27,7 +28,12 @@ export default function RoomLogs() {
   return (
     <div className="h-screen w-full bg-white flex flex-col">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center gap-3">
+      <motion.div 
+        className="px-6 py-4 border-b border-[var(--electric-blue-light)] flex items-center gap-3"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         <button
           onClick={() => navigate(`/room/${id}`)}
           className="p-1 hover:bg-[var(--electric-blue-light)] rounded-lg transition-colors"
@@ -36,10 +42,15 @@ export default function RoomLogs() {
           <ChevronLeft className="w-6 h-6 text-[var(--electric-blue)]" />
         </button>
         <h1 className="text-lg text-neutral-900">Check-in Logs</h1>
-      </div>
+      </motion.div>
 
       {/* Filters and Export */}
-      <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between">
+      <motion.div 
+        className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+      >
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-[var(--electric-blue)]" />
           <select
@@ -53,22 +64,28 @@ export default function RoomLogs() {
             <option value="week">This week</option>
           </select>
         </div>
-        <button
+        <motion.button
           onClick={() => navigate(`/room/${id}/export`)}
           className="p-2 hover:bg-[var(--electric-blue-light)] rounded-lg transition-colors"
           aria-label="Export logs"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <Download className="w-5 h-5 text-[var(--electric-blue)]" />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       {/* Logs List */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
         <div className="space-y-2">
-          {mockLogs.map((log) => (
-            <div
+          {mockLogs.map((log, index) => (
+            <motion.div
               key={log.id}
               className="p-4 bg-neutral-50 rounded-xl"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.05 * index + 0.2 }}
+              whileHover={{ scale: 1.01 }}
             >
               <div className="flex items-start justify-between mb-2">
                 <div>
@@ -81,7 +98,7 @@ export default function RoomLogs() {
                 <span>•</span>
                 <span>{log.time}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
