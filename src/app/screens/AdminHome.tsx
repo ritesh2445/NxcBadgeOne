@@ -94,18 +94,32 @@ export default function AdminHome() {
           >
             Quick Actions
           </motion.h2>
-          <motion.button
-            onClick={() => navigate("/issue-document")}
-            className="w-full text-left p-4 bg-neutral-50 rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors touch-manipulation"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <p className="text-neutral-900">Issue Document</p>
-            <p className="text-sm text-neutral-500 mt-1">Send documents to students</p>
-          </motion.button>
+          <div className="space-y-2">
+            <motion.button
+              onClick={() => navigate("/announcements/create")}
+              className="w-full text-left p-4 bg-neutral-50 rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors touch-manipulation"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <p className="text-neutral-900">Create Announcement</p>
+              <p className="text-sm text-neutral-500 mt-1">Send announcement to rooms or university</p>
+            </motion.button>
+            <motion.button
+              onClick={() => navigate("/issue-document")}
+              className="w-full text-left p-4 bg-neutral-50 rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors touch-manipulation"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <p className="text-neutral-900">Issue Document</p>
+              <p className="text-sm text-neutral-500 mt-1">Send documents to students</p>
+            </motion.button>
+          </div>
         </div>
       </div>
     </div>

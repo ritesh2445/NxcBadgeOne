@@ -188,7 +188,6 @@ export default function IssueDocument() {
                               transition={{ type: "spring", stiffness: 500, damping: 30 }}
                             >
                               <path
-                                fill="currentColor"
                                 d="M10 3L4.5 8.5L2 6"
                                 stroke="currentColor"
                                 strokeWidth="2"

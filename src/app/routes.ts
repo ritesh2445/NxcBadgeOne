@@ -63,6 +63,10 @@ export const router = createBrowserRouter([
     Component: CreateAnnouncement,
   },
   {
+    path: "/announcements/create",
+    Component: CreateAnnouncement,
+  },
+  {
     path: "/issue-document",
     Component: IssueDocument,
   },
