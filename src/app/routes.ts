@@ -11,6 +11,7 @@ import Export from "./screens/Export";
 import Announcements from "./screens/Announcements";
 import CreateAnnouncement from "./screens/CreateAnnouncement";
 import IssueDocument from "./screens/IssueDocument";
+import AddStudents from "./screens/AddStudents";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
   {
     path: "/room/:id",
     Component: RoomDetails,
+  },
+  {
+    path: "/room/:id/add-students",
+    Component: AddStudents,
   },
   {
     path: "/room/:id/start-checkin",

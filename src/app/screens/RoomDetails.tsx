@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router";
-import { ChevronLeft, Play, FileText, Bell } from "lucide-react";
+import { ChevronLeft, Play, FileText, Bell, Users } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function RoomDetails() {
@@ -97,6 +97,19 @@ export default function RoomDetails() {
           >
             <Bell className="w-5 h-5" />
             <span>Announcements</span>
+          </motion.button>
+
+          <motion.button
+            onClick={() => navigate(`/room/${id}/add-students`)}
+            className="w-full p-4 bg-neutral-50 text-[var(--electric-blue)] rounded-xl hover:bg-[var(--electric-blue-light)] hover:border-[var(--electric-blue)] border border-transparent transition-colors flex items-center justify-center gap-2 touch-manipulation"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Users className="w-5 h-5" />
+            <span>Manage Students</span>
           </motion.button>
         </div>
       </div>
